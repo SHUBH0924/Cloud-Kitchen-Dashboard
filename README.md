@@ -148,4 +148,4 @@ All of the above is interactively explorable in the Insights tab of the dashboar
 - Source cohort columns (`REVENUE COHORT`, `CM COHORT`, `EBITDA COHORT`) are preserved as fixed cohort filters in Dashboard 1, exactly as required by the brief.
 
 
-![alt text](image.png)
+![alt text](image-1.png)
