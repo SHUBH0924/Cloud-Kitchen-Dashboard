@@ -62,7 +62,7 @@ Open the printed URL (usually `http://localhost:8501`).
 - CSV download
 
 ### Dashboard 2 — Variance Level P&L
-- **Top filter:** Variance category multiselect with the four buckets from the assignment image:
+- **Top filter:** Variance category multiselect with the four buckets:
   - `(a) Var < 2%`, `(b) Var 2% to 3%`, `(c) Var 3% to 5%`, `(d) Var > 5%`
 - **Sub-dashboard 1** — Average variance % per (revenue bucket × month), with Grand-total row. Conditional formatting (heat) on the values.
 - **Sub-dashboard 2** — Distinct store count per (revenue bucket × month), with Grand-total row. Conditional formatting.
@@ -144,5 +144,5 @@ All of the above is interactively explorable in the Insights tab of the dashboar
 
 - 2,100 rows × 17 columns, 344 stores across 5 cities and 4 zones
 - Time range: **Oct 2023 → Mar 2024** (6 months)
-- The `(a) Below INR 15 lacs` revenue bucket is empty in this dataset — the minimum NET REVENUE observed is ~₹17 lacs. The bucket is kept for parity with the assignment template.
+- The `(a) Below INR 15 lacs` revenue bucket is empty in this dataset — the minimum NET REVENUE observed is ~₹17 lacs.
 - Source cohort columns (`REVENUE COHORT`, `CM COHORT`, `EBITDA COHORT`) are preserved as fixed cohort filters in Dashboard 1, exactly as required by the brief.
