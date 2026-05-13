@@ -146,3 +146,6 @@ All of the above is interactively explorable in the Insights tab of the dashboar
 - Time range: **Oct 2023 → Mar 2024** (6 months)
 - The `(a) Below INR 15 lacs` revenue bucket is empty in this dataset — the minimum NET REVENUE observed is ~₹17 lacs.
 - Source cohort columns (`REVENUE COHORT`, `CM COHORT`, `EBITDA COHORT`) are preserved as fixed cohort filters in Dashboard 1, exactly as required by the brief.
+
+
+![alt text](image.png)
