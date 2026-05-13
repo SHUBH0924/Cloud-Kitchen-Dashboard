@@ -76,6 +76,12 @@ Revenue buckets:
 - `(d) INR 35 to 45 lacs`
 - `(e) Above INR 45 lacs`
 
+Variance buckets:
+- `(a) Var < 2%`
+- `(b) Var 2% to 3%`
+- `(c) Var 3% to 5%`
+- `(d) Var > 5%`
+
 ### Insights tab
 - Top / bottom 10 stores by EBITDA
 - Zone × City EBITDA % heatmap
