@@ -112,12 +112,12 @@ The raw file contains rupee amounts only. The following are computed in `data_pr
 |---|---|
 | `GM %`        | `GROSS MARGIN / NET REVENUE` |
 | `CM`          | `GROSS MARGIN − VARIANCE` (variance = food wastage, reduces GM to give CM) |
-| `CM %`        | `CM / NET REVENUE` |
-| `EBITDA %`    | `KITCHEN EBITDA / NET REVENUE` |
-| `VARIANCE %`  | `VARIANCE / NET REVENUE` |
+| `CM %`        | `(CM / NET REVENUE) * 100` |
+| `EBITDA %`    | `(KITCHEN EBITDA / NET REVENUE) * 100` |
+| `VARIANCE %`  | `(VARIANCE / NET REVENUE) * 100` |
 | `MONTH_DT`        | parsed datetime for ordering |
-| `REVENUE BUCKET`  |
-| `VARIANCE BUCKET` |
+| `REVENUE BUCKET`  | Revenue Buckets are derived above |
+| `VARIANCE BUCKET` | Variance Buckets are derived above |
 
 
 ---
