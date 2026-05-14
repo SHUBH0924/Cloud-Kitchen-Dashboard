@@ -323,7 +323,7 @@ def render_variance_pnl(d: pd.DataFrame) -> None:
     )
 
     # Sub-dashboard 2
-    st.subheader("Store count — by revenue bucket × month")
+    st.subheader("Store count — by revenue bucket by month")
     st.caption("Number of distinct kitchen stores in each revenue bucket, after applying the variance filter above.")
 
     count_pivot = (
@@ -432,7 +432,7 @@ def render_insights(d: pd.DataFrame) -> None:
 
     st.divider()
 
-    # Variance vs EBITDA scatter
+    # Variance vs EBITDA scatter plot
     st.subheader("Does food wastage hurt profitability?")
     scatter_df = (
         d.groupby("STORE", as_index=False)

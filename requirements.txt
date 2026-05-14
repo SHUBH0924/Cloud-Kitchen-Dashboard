@@ -8,11 +8,3 @@ Jinja2==3.1.2
 scipy==1.11.4
 statsmodels==0.14.2
 matplotlib==3.8.2
-
-# streamlit==1.38.0
-# pandas==2.2.2
-# numpy==1.26.4
-# plotly==5.24.1
-# openpyxl==3.1.5
-# Jinja2==3.1.2
-# matplotlib==3.8.2
