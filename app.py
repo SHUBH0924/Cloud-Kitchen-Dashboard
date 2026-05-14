@@ -269,7 +269,7 @@ def render_variance_pnl(d: pd.DataFrame) -> None:
         st.warning("No rows match the current filters.")
         return
 
-    # Variance-bucket multiselect (top filter from the assignment image)
+    # Variance-bucket multiselect
     variance_labels = [lab for lab, _, _ in VARIANCE_BUCKETS]
     sel_var = st.multiselect(
         "Variance category",
