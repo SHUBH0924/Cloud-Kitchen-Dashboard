@@ -15,7 +15,7 @@ from data_prep import (
     VARIANCE_BUCKETS,
 )
 
-# ───────────────────────── Page config ─────────────────────────
+# Page Config
 st.set_page_config(
     page_title="Kitchen P&L Dashboard",
     layout="wide",
@@ -24,12 +24,13 @@ st.set_page_config(
 
 DATA_PATH = Path(__file__).parent / "Kittchen_PNL_Data.xlsx"
 
-# ───────────────────────── Caching ─────────────────────────
+# Caching
 @st.cache_data(show_spinner="Wait Your data is loading...")
 def _load(path_str: str, mtime: float) -> pd.DataFrame:
     return load_and_prepare(path_str)
 
 
+# The main data loading function.
 def get_data() -> pd.DataFrame:
     mtime = DATA_PATH.stat().st_mtime if DATA_PATH.exists() else 0.0
     return _load(str(DATA_PATH), mtime)
@@ -69,7 +70,7 @@ def apply_filters(
     return df[m].copy()
 
 
-# ───────────────────────── Helpers ─────────────────────────
+# Helper functions
 def inr(x: float) -> str:
     """Format an integer-rupee value with Indian-style commas."""
     if pd.isna(x):
@@ -94,7 +95,7 @@ def pct(x: float) -> str:
     return "—" if pd.isna(x) else f"{x*100:,.1f}%"
 
 
-# ───────────────────────── Sidebar global filters ─────────────────────────
+# Filters
 df = get_data()
 
 with st.sidebar:
@@ -154,7 +155,7 @@ filtered = apply_filters(
 )
 
 
-# ═════════════════════════ DASHBOARD 1 ═════════════════════════
+# Kitchen Level P&L Dashboard
 def render_kitchen_pnl(d: pd.DataFrame) -> None:
     st.title("Kitchen Level P&L")
     st.caption(
@@ -166,7 +167,7 @@ def render_kitchen_pnl(d: pd.DataFrame) -> None:
         st.warning("No rows match the current filters.")
         return
 
-    # ───────── KPI row ─────────
+    # KPIs
     k1, k2, k3, k4, k5 = st.columns(5)
     k1.metric("Stores", f"{d['STORE'].nunique():,}")
     k2.metric("Net revenue", lacs(d["NET REVENUE"].sum()))
@@ -179,7 +180,7 @@ def render_kitchen_pnl(d: pd.DataFrame) -> None:
 
     st.divider()
 
-    # ───────── Snapshot table ─────────
+    # Table
     st.subheader("Kitchen snapshot")
     pivot_metrics = ["NET REVENUE", "GM %", "CM %", "KITCHEN EBITDA", "EBITDA %"]
 
@@ -192,7 +193,7 @@ def render_kitchen_pnl(d: pd.DataFrame) -> None:
         )
     )
 
-    # Order columns by actual calendar month
+    # Orders the column by their month
     month_order = (
         d.dropna(subset=["MONTH_DT"])
          .sort_values("MONTH_DT")["MONTH LABEL"].drop_duplicates().tolist()
@@ -236,7 +237,7 @@ def render_kitchen_pnl(d: pd.DataFrame) -> None:
 
     st.divider()
 
-    # ───────── Trend chart ─────────
+    # Trends
     st.subheader("Trend — totals by month")
     monthly = (
         d.groupby("MONTH_DT", as_index=False)
@@ -259,7 +260,7 @@ def render_kitchen_pnl(d: pd.DataFrame) -> None:
     st.plotly_chart(fig, use_container_width=True)
 
 
-# ═════════════════════════ DASHBOARD 2 ═════════════════════════
+# Variance Level P&L Dashboard
 def render_variance_pnl(d: pd.DataFrame) -> None:
     st.title("Variance Level P&L")
     st.caption("Food-wastage analysis bucketed by variance % and revenue range. "
@@ -289,7 +290,7 @@ def render_variance_pnl(d: pd.DataFrame) -> None:
     )
     rev_order = [lab for lab, _, _ in REVENUE_BUCKETS]
 
-    # ───────── Sub-dashboard 1 ─────────
+    # Sub-dashboard
     st.subheader("Variance by revenue category — average variance %")
     st.caption("Average variance % across the kitchens in each revenue bucket, by month.")
 
@@ -321,7 +322,7 @@ def render_variance_pnl(d: pd.DataFrame) -> None:
         height=260,
     )
 
-    # ───────── Sub-dashboard 2 ─────────
+    # Sub-dashboard 2
     st.subheader("Store count — by revenue bucket × month")
     st.caption("Number of distinct kitchen stores in each revenue bucket, after applying the variance filter above.")
 
@@ -379,7 +380,7 @@ def render_variance_pnl(d: pd.DataFrame) -> None:
     )
 
 
-# ═════════════════════════ BONUS INSIGHTS ═════════════════════════
+# Insights Dashboard
 def render_insights(d: pd.DataFrame) -> None:
     st.title("Insights")
 
@@ -455,7 +456,7 @@ def render_insights(d: pd.DataFrame) -> None:
             f"— {'negative, as expected' if corr < 0 else 'weak/positive'}.")
 
 
-# ═════════════════════════ ROUTER ═════════════════════════
+# Routes
 if page == "Kitchen Level P&L":
     render_kitchen_pnl(filtered)
 elif page == "Variance Level P&L":
